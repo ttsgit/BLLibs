@@ -9,6 +9,7 @@
     <File>Scale.c</File>
     <File>Unscale.c</File>
     <File>ValveHandler.c</File>
+    <File>OutputDelay.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="astime" />

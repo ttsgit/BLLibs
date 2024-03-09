@@ -1,4 +1,6 @@
 VAR
+	valve002 : Valve;
+	valve001 : Valve;
 	value : REAL;
 	analog_value : INT;
 END_VAR

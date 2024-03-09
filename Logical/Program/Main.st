@@ -17,6 +17,9 @@ PROGRAM _CYCLIC
 	SensorHandler(TT003, TT003_PARA);
 	
 	analog_value := Unscale(value, 100.0, 0.0, SIS_HIGH_LIMIT, SIS_LOW_LIMIT);
+	
+	ValveHandler(valve001);
+	ValveHandler(valve002);
 END_PROGRAM
 
 PROGRAM _EXIT

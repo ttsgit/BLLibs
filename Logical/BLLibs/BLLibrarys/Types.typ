@@ -61,26 +61,21 @@ TYPE
 		is_sis : BOOL; (*The analog range value of SIS module is 4000-20000, which is different from normal(0-32767).*)
 		inverse : BOOL; (*Inverse the low and high range*)
 	END_STRUCT;
-	
-	
-	
 	Valve : 	STRUCT 
 		input : ValveInput;
 		io : ValveIO;
 		cmd : ValveCmd;
 		status : ValveStatus;
 		process : ValveProcess;
+		para : ValvePara;
 	END_STRUCT;
-	ValveInput : 	STRUCT  (**)
-		interlock_signal : BOOL; (**)
-		auto_open_signal : BOOL; (**)
-		open_feedback_state : BOOL; (**)
-		close_feedback_state : BOOL; (**)
-		open_feedback : BOOL; (**)
-		close_feedback : BOOL; (**)
-		local_stop : BOOL; (**)
-		is_interlock_open : BOOL;
+	ValveInput : 	STRUCT 
+		interlock_signal : BOOL;
+		auto_open_signal : BOOL;
+		stop_signal : BOOL;
 		mutex_signal : BOOL;
+		open_feedback_state : BOOL;
+		close_feedback_state : BOOL;
 	END_STRUCT;
 	ValveIO : 	STRUCT 
 		open_feedback : BOOL;
@@ -92,10 +87,12 @@ TYPE
 		mode : BYTE; (*0: Manual mode 1: Automatic mode 2: Local mode 3: Out of service mode*)
 		open : BOOL;
 		mutex : BOOL;
-		interlock : BOOL; (**)
-		emergency_stop : BOOL; (**)
-		open_fault : BOOL; (**)
-		close_fault : BOOL; (**)
+		interlock : BOOL;
+		emergency_stop : BOOL;
+		open_fault : BOOL;
+		close_fault : BOOL;
+		open_feedback : BOOL;
+		close_feedback : BOOL;
 		state : WORD; (*Open Close*)
 	END_STRUCT;
 	ValveProcess : 	STRUCT 
@@ -110,5 +107,12 @@ TYPE
 		fault_disable : BOOL;
 		mutex_disable : BOOL;
 		simulation : BOOL;
+	END_STRUCT;
+	ValvePara : 	STRUCT 
+		close_fault_delay : DINT := 5;
+		open_fault_delay : DINT := 5;
+		open_feedback_enable : BOOL := TRUE;
+		close_feedback_enable : BOOL := TRUE;
+		is_interlock_open : BOOL;
 	END_STRUCT;
 END_TYPE
