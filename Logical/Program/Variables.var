@@ -1,0 +1,16 @@
+VAR
+	value : REAL;
+	analog_value : INT;
+END_VAR
+VAR RETAIN
+	TT003_PARA : SensorPara;
+	TT002_PARA : SensorPara;
+	TT001_PARA : SensorPara;
+END_VAR
+VAR
+	TT001 : Sensor;
+	out_delay : TIME;
+	out : BOOL;
+	TT003 : Sensor;
+	TT002 : Sensor;
+END_VAR

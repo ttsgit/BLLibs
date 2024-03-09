@@ -1,0 +1,6 @@
+VAR_CONFIG
+	::Program:out AT %QX."X20DO8322".DigitalOutput01;
+	::Program:TT001.io.analog_signal AT %IW."X20AI4622".AnalogInput01;
+	::Program:TT002.io.analog_signal AT %IW."X20AI4622".AnalogInput02;
+	::Program:TT003.io.analog_signal  AT %IW."X20AI4622".AnalogInput03;
+END_VAR
