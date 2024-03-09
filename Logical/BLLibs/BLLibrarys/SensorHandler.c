@@ -12,9 +12,7 @@
 
 /* TODO: This is a function that handles sensor */
 plcbit SensorHandler(struct Sensor* sensor, struct SensorPara* sensor_para)
-{
-	plcbit high_alarm, low_alarm, high_warning, low_warning, high_tolerance, low_tolerance;
-	
+{	
 	/*Out of service*/
 	if (sensor->cmd.out_service)
 	{
@@ -64,27 +62,27 @@ plcbit SensorHandler(struct Sensor* sensor, struct SensorPara* sensor_para)
 	sensor->status.underflow = (sensor->io.analog_signal < (LOW_LIMIT - DEADBAND_LIMIT))?1:0;
 	
 	/*High alarm*/
-	high_alarm = sensor_para->high_alarm_enable?(sensor->status.value > sensor_para->high_alarm_limit):0;
+	plcbit high_alarm = sensor_para->high_alarm_enable?(sensor->status.value > sensor_para->high_alarm_limit):0;
 	sensor->status.high_alarm = OutputDelay(high_alarm, &sensor->process.high_alarm_timer, sensor_para->alarm_delay);
 	
 	/*Low alarm*/
-	low_alarm = sensor_para->low_alarm_enable?(sensor->status.value < sensor_para->low_alarm_limit):0;
+	plcbit low_alarm = sensor_para->low_alarm_enable?(sensor->status.value < sensor_para->low_alarm_limit):0;
 	sensor->status.low_alarm = OutputDelay(low_alarm, &sensor->process.low_alarm_timer, sensor_para->alarm_delay);
 	
 	/*High warning*/
-	high_warning = sensor_para->high_warning_enable?(sensor->status.value > sensor_para->high_warning_limit):0;
+	plcbit high_warning = sensor_para->high_warning_enable?(sensor->status.value > sensor_para->high_warning_limit):0;
 	sensor->status.high_warning = OutputDelay(high_warning, &sensor->process.high_warning_timer, sensor_para->alarm_delay);
 
 	/*Low warning*/
-	low_warning = sensor_para->low_warning_enable?(sensor->status.value < sensor_para->low_warning_limit):0;
+	plcbit low_warning = sensor_para->low_warning_enable?(sensor->status.value < sensor_para->low_warning_limit):0;
 	sensor->status.low_warning = OutputDelay(low_warning, &sensor->process.low_warning_timer, sensor_para->alarm_delay);
 	
 	/*High tolerance*/
-	high_tolerance = sensor_para->high_tolerance_enable?(sensor->status.value > sensor_para->high_tolerance_limit):0;
+	plcbit high_tolerance = sensor_para->high_tolerance_enable?(sensor->status.value > sensor_para->high_tolerance_limit):0;
 	sensor->status.high_tolerance = OutputDelay(high_tolerance, &sensor->process.high_tolerance_timer, sensor_para->alarm_delay);
 	
 	/*Low tolerance*/
-	low_tolerance = sensor_para->low_tolerance_enable?(sensor->status.value < sensor_para->low_tolerance_limit):0;
+	plcbit low_tolerance = sensor_para->low_tolerance_enable?(sensor->status.value < sensor_para->low_tolerance_limit):0;
 	sensor->status.low_tolerance = OutputDelay(low_tolerance, &sensor->process.low_tolerance_timer, sensor_para->alarm_delay);
 
 	/*Gradient alarm*/

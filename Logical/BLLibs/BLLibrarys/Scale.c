@@ -11,8 +11,7 @@
 /* TODO:min-max normalization */
 float Scale(signed short analog, float high_range, float low_range, signed short analog_high, signed short analog_low)
 {
-	/*TODO: Add your code here*/
-	float temp;		
+	/*TODO: Add your code here*/		
 	if (analog < analog_low)
 	{
 		return low_range;
@@ -23,6 +22,6 @@ float Scale(signed short analog, float high_range, float low_range, signed short
 		return high_range;
 	}
 	
-	temp = (float)(analog - analog_low) * (high_range - low_range) / (float)(analog_high - analog_low) + low_range;
-	return temp;
+	return ((float)(analog - analog_low) * (high_range - low_range) / (float)(analog_high - analog_low) + low_range);
+
 }

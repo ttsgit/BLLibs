@@ -12,7 +12,6 @@
 signed short Unscale(float value, float high_range, float low_range, signed short analog_high, signed short analog_low)
 {
 	/*TODO: Add your code here*/
-	int temp;
 	if(high_range == low_range)
 	{
 		return analog_low;
@@ -28,6 +27,5 @@ signed short Unscale(float value, float high_range, float low_range, signed shor
 		return analog_high;
 	}
 	
-	temp = (signed short)(value - low_range) * (analog_high - analog_low) / (signed short)(high_range - low_range) + analog_low;
-	return temp;
+	return ((signed short)(value - low_range) * (analog_high - analog_low) / (signed short)(high_range - low_range) + analog_low);
 }
