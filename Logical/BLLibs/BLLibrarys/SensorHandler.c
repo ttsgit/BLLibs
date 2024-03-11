@@ -63,49 +63,43 @@ plcbit SensorHandler(struct Sensor* sensor, struct SensorPara* sensor_para)
 	
 	/*High alarm*/
 	plcbit high_alarm = sensor_para->high_alarm_enable?(sensor->status.value > sensor_para->high_alarm_limit):0;
-	sensor->status.high_alarm = OutputDelay(high_alarm, &sensor->process.high_alarm_timer, sensor_para->alarm_delay);
+	sensor->status.high_alarm = OutputDelay(high_alarm, &sensor->internal.high_alarm_timer, sensor_para->alarm_delay);
 	
 	/*Low alarm*/
 	plcbit low_alarm = sensor_para->low_alarm_enable?(sensor->status.value < sensor_para->low_alarm_limit):0;
-	sensor->status.low_alarm = OutputDelay(low_alarm, &sensor->process.low_alarm_timer, sensor_para->alarm_delay);
+	sensor->status.low_alarm = OutputDelay(low_alarm, &sensor->internal.low_alarm_timer, sensor_para->alarm_delay);
 	
 	/*High warning*/
 	plcbit high_warning = sensor_para->high_warning_enable?(sensor->status.value > sensor_para->high_warning_limit):0;
-	sensor->status.high_warning = OutputDelay(high_warning, &sensor->process.high_warning_timer, sensor_para->alarm_delay);
+	sensor->status.high_warning = OutputDelay(high_warning, &sensor->internal.high_warning_timer, sensor_para->alarm_delay);
 
 	/*Low warning*/
 	plcbit low_warning = sensor_para->low_warning_enable?(sensor->status.value < sensor_para->low_warning_limit):0;
-	sensor->status.low_warning = OutputDelay(low_warning, &sensor->process.low_warning_timer, sensor_para->alarm_delay);
+	sensor->status.low_warning = OutputDelay(low_warning, &sensor->internal.low_warning_timer, sensor_para->alarm_delay);
 	
 	/*High tolerance*/
 	plcbit high_tolerance = sensor_para->high_tolerance_enable?(sensor->status.value > sensor_para->high_tolerance_limit):0;
-	sensor->status.high_tolerance = OutputDelay(high_tolerance, &sensor->process.high_tolerance_timer, sensor_para->alarm_delay);
+	sensor->status.high_tolerance = OutputDelay(high_tolerance, &sensor->internal.high_tolerance_timer, sensor_para->alarm_delay);
 	
 	/*Low tolerance*/
 	plcbit low_tolerance = sensor_para->low_tolerance_enable?(sensor->status.value < sensor_para->low_tolerance_limit):0;
-	sensor->status.low_tolerance = OutputDelay(low_tolerance, &sensor->process.low_tolerance_timer, sensor_para->alarm_delay);
+	sensor->status.low_tolerance = OutputDelay(low_tolerance, &sensor->internal.low_tolerance_timer, sensor_para->alarm_delay);
 
 	/*Gradient alarm*/
-	if (sensor_para->gradient_enable)
+	if (sensor_para->gradient_cycle < 1)
 	{
-		if (sensor_para->gradient_cycle <= 0)
-		{
-			sensor_para->gradient_cycle = 1;
-		}
-		if ((clock_ms() - sensor->process.gradient_timer) >= (sensor_para->gradient_cycle * 1000))
-		{
-			float temp = sensor->status.value - sensor->process.pre_value;
-			sensor->status.gradient_value = temp / (float)sensor_para->gradient_cycle;
-			temp = (temp < 0.0f)?(temp * -1.0f):temp;
-			sensor->status.gradient_alarm = (temp > sensor_para->gradient_limit)?1:0;
-			sensor->process.pre_value = sensor->status.value;
-			sensor->process.gradient_timer = clock_ms();
-		}
+		sensor_para->gradient_cycle = 1;
 	}
-	else
+
+	if ((clock_ms() - sensor->internal.gradient_timer) >= (sensor_para->gradient_cycle * 1000))
 	{
-		sensor->status.gradient_alarm = 0;
+		sensor->internal.delta_value = sensor->status.value - sensor->internal.pre_value;
+		sensor->status.gradient_value = sensor->internal.delta_value / (float)sensor_para->gradient_cycle;
+		sensor->internal.pre_value = sensor->status.value;
+		sensor->internal.gradient_timer = clock_ms();
 	}
+	float temp = (sensor->internal.delta_value < 0.0f)?(sensor->internal.delta_value * -1.0f):sensor->internal.delta_value;
+	sensor->status.gradient_alarm = (sensor_para->gradient_enable)?(temp > sensor_para->gradient_limit):0;
 	
 	sensor->status.state = (sensor->status.high_alarm | (sensor->status.low_alarm << 1) | (sensor->status.high_warning << 2)  | (sensor->status.low_warning << 3) | 
 		(sensor->status.high_tolerance << 4) | (sensor->status.low_tolerance << 5)  | (sensor->status.gradient_alarm << 6)  | (sensor->status.overflow << 7) | (sensor->status.underflow << 8));

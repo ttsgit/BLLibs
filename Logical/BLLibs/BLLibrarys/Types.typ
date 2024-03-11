@@ -4,7 +4,7 @@ TYPE
 		io : SensorIO;
 		cmd : SensorCmd;
 		status : SensorStatus;
-		process : SensorProcess;
+		internal : SensorInternal;
 	END_STRUCT;
 	SensorIO : 	STRUCT 
 		analog_signal : INT;
@@ -23,7 +23,7 @@ TYPE
 		overflow : BOOL;
 		underflow : BOOL;
 	END_STRUCT;
-	SensorProcess : 	STRUCT 
+	SensorInternal : 	STRUCT 
 		high_alarm_timer : TIME;
 		low_alarm_timer : TIME;
 		high_warning_timer : TIME;
@@ -32,6 +32,7 @@ TYPE
 		low_tolerance_timer : TIME;
 		gradient_timer : TIME;
 		pre_value : REAL;
+		delta_value : REAL;
 	END_STRUCT;
 	SensorCmd : 	STRUCT 
 		simulation_value : REAL; (*Under simulation mode, the process value will use the simulation value*)
@@ -48,9 +49,9 @@ TYPE
 		high_tolerance_limit : REAL; (*Tolerance high*)
 		low_tolerance_limit : REAL; (*Tolerance low*)
 		gradient_limit : REAL; (*Positive or negative gradient limit*)
-		gradient_cycle : DINT; (*Gradient cycle time*)
-		alarm_delay : DINT; (*Alarm delay to outupt *)
-		uint : INT; (*Physical unit*)
+		gradient_cycle : DINT := 10; (*Gradient cycle time*)
+		alarm_delay : DINT := 5; (*Alarm delay to outupt *)
+		physical_unit : INT; (*Physical unit*)
 		high_alarm_enable : BOOL; (*Enable alarm high*)
 		low_alarm_enable : BOOL; (*Enable alarm low*)
 		high_warning_enable : BOOL; (*Enable warning high*)
@@ -62,20 +63,20 @@ TYPE
 		inverse : BOOL; (*Inverse the low and high range*)
 	END_STRUCT;
 	Valve : 	STRUCT 
-		input : ValveInput;
+		process : ValveProcess;
 		io : ValveIO;
 		cmd : ValveCmd;
 		status : ValveStatus;
-		process : ValveProcess;
-		para : ValvePara;
+		internal : ValveInternal;
 	END_STRUCT;
-	ValveInput : 	STRUCT 
+	ValveProcess : 	STRUCT 
 		interlock_signal : BOOL;
 		auto_open_signal : BOOL;
 		stop_signal : BOOL;
 		mutex_signal : BOOL;
 		open_feedback_state : BOOL;
 		close_feedback_state : BOOL;
+		fault : BOOL;
 	END_STRUCT;
 	ValveIO : 	STRUCT 
 		open_feedback : BOOL;
@@ -95,24 +96,24 @@ TYPE
 		close_feedback : BOOL;
 		state : WORD; (*Open Close*)
 	END_STRUCT;
-	ValveProcess : 	STRUCT 
+	ValveInternal : 	STRUCT 
 		open_fault_timer : TIME;
 		close_fault_timer : TIME;
+		manual_open : BOOL;
+		mode_edge : BOOL;
 	END_STRUCT;
 	ValveCmd : 	STRUCT 
 		mode : BYTE; (*0: Manual mode 1: Automatic mode 2: Local mode 3: Out of service mode*)
 		open : BOOL;
 		close : BOOL;
 		reset : BOOL;
-		fault_disable : BOOL;
-		mutex_disable : BOOL;
-		simulation : BOOL;
-	END_STRUCT;
-	ValvePara : 	STRUCT 
-		close_fault_delay : DINT := 5;
-		open_fault_delay : DINT := 5;
 		open_feedback_enable : BOOL := TRUE;
 		close_feedback_enable : BOOL := TRUE;
+		mutex_enable : BOOL := TRUE;
+		interlock_enable : BOOL := TRUE;
 		is_interlock_open : BOOL;
+		simulation : BOOL;
+		open_fault_delay : DINT := 5;
+		close_fault_delay : DINT := 5;
 	END_STRUCT;
 END_TYPE
