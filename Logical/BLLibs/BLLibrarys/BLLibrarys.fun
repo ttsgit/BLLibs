@@ -39,3 +39,15 @@ END_FUNCTION
 		second : DINT;
 	END_VAR
 END_FUNCTION
+
+{REDUND_OK} FUNCTION RegulatorHandler : BOOL (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		regulator : Regulator;
+	END_VAR
+END_FUNCTION
+
+{REDUND_OK} FUNCTION fabs : REAL (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		value : REAL;
+	END_VAR
+END_FUNCTION

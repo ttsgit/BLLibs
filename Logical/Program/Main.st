@@ -20,6 +20,10 @@ PROGRAM _CYCLIC
 	
 	ValveHandler(valve001);
 	ValveHandler(valve002);
+	
+	RegulatorHandler(regulator001);
+	RegulatorHandler(regulator002);
+	
 END_PROGRAM
 
 PROGRAM _EXIT

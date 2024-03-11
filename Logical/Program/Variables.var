@@ -15,4 +15,6 @@ VAR
 	out : BOOL;
 	TT003 : Sensor;
 	TT002 : Sensor;
+	regulator002 : Regulator;
+	regulator001 : Regulator;
 END_VAR

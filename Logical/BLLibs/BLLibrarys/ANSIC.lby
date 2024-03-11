@@ -10,10 +10,11 @@
     <File>Unscale.c</File>
     <File>ValveHandler.c</File>
     <File>OutputDelay.c</File>
+    <File>RegulatorHandler.c</File>
+    <File>fabs.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="astime" />
     <Dependency ObjectName="AsIecCon" />
-    <Dependency ObjectName="operator" />
   </Dependencies>
 </Library>

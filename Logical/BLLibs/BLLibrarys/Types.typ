@@ -76,7 +76,7 @@ TYPE
 		mutex_signal : BOOL;
 		open_feedback_state : BOOL;
 		close_feedback_state : BOOL;
-		fault : BOOL;
+		error : BOOL;
 	END_STRUCT;
 	ValveIO : 	STRUCT 
 		open_feedback : BOOL;
@@ -85,6 +85,7 @@ TYPE
 		emergency_stop : BOOL;
 	END_STRUCT;
 	ValveStatus : 	STRUCT 
+		state : WORD; (*Bit0: Open, Bit1: Open feedback, Bit2: Close feedback, Bit3: mutex, Bit4: Open fault, Bit5: Close fault, Bit6: Interlock, Bit7: Emergency stop*)
 		mode : BYTE; (*0: Manual mode 1: Automatic mode 2: Local mode 3: Out of service mode*)
 		open : BOOL;
 		mutex : BOOL;
@@ -94,7 +95,6 @@ TYPE
 		close_fault : BOOL;
 		open_feedback : BOOL;
 		close_feedback : BOOL;
-		state : WORD; (*Open Close*)
 	END_STRUCT;
 	ValveInternal : 	STRUCT 
 		open_fault_timer : TIME;
@@ -103,6 +103,8 @@ TYPE
 		mode_edge : BOOL;
 	END_STRUCT;
 	ValveCmd : 	STRUCT 
+		open_fault_delay : DINT := 5;
+		close_fault_delay : DINT := 5;
 		mode : BYTE; (*0: Manual mode 1: Automatic mode 2: Local mode 3: Out of service mode*)
 		open : BOOL;
 		close : BOOL;
@@ -113,7 +115,51 @@ TYPE
 		interlock_enable : BOOL := TRUE;
 		is_interlock_open : BOOL;
 		simulation : BOOL;
-		open_fault_delay : DINT := 5;
-		close_fault_delay : DINT := 5;
+	END_STRUCT;
+	Regulator : 	STRUCT 
+		process : RegulatorProcess;
+		io : RegulatorIO;
+		cmd : RegulatorCmd;
+		status : RegulatorStatus;
+		internal : RegulatorInternal;
+	END_STRUCT;
+	RegulatorProcess : 	STRUCT 
+		auto_position : REAL;
+		interlock_signal : BOOL;
+		stop_signal : BOOL;
+		mutex_signal : BOOL;
+		error : BOOL;
+	END_STRUCT;
+	RegulatorIO : 	STRUCT 
+		position_feedback : INT;
+		position : INT;
+		emergency_stop : BOOL;
+	END_STRUCT;
+	RegulatorStatus : 	STRUCT 
+		position : REAL;
+		position_feedback : REAL;
+		state : WORD; (*Bit0: Open, Bit1: Open feedback, Bit2: Close feedback, Bit3: mutex, Bit4: Open fault, Bit5: Close fault, Bit6: Interlock, Bit7: Emergency stop*)
+		mode : BYTE; (*0: Manual mode 1: Automatic mode 2: Local mode 3: Out of service mode*)
+		mutex : BOOL;
+		interlock : BOOL;
+		emergency_stop : BOOL;
+		feedback_fault : BOOL;
+	END_STRUCT;
+	RegulatorInternal : 	STRUCT 
+		feedback_fault : BOOL;
+		feedback_fault_timer : TIME;
+	END_STRUCT;
+	RegulatorCmd : 	STRUCT 
+		position : REAL;
+		fault_position_delta : REAL := 20.0;
+		fault_delay : DINT := 5;
+		mode : BYTE; (*0: Manual mode 1: Automatic mode 2: Local mode 3: Out of service mode*)
+		reset : BOOL;
+		feedback_enable : BOOL := TRUE;
+		mutex_enable : BOOL := TRUE;
+		interlock_enable : BOOL := TRUE;
+		is_interlock_open : BOOL;
+		simulation : BOOL;
+		inverse : BOOL;
 	END_STRUCT;
 END_TYPE

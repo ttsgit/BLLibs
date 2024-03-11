@@ -13,7 +13,7 @@
 #define FAULT_BITS 0xFFF0
 
 
-void reset_cmd(struct ValveCmd* cmd);
+static void reset_cmd(struct ValveCmd* cmd);
 
 
 /* TODO: Add your comment here */
@@ -186,7 +186,7 @@ plcbit ValveHandler(struct Valve* valve)
 	valve->status.state = valve->status.open | (valve->status.open_feedback << 1) | (valve->status.close_feedback << 2) | (valve->status.mutex << 3) | 
 		(valve->status.open_fault << 4) | (valve->status.close_fault << 5) | (valve->status.interlock << 6) | (valve->status.emergency_stop << 7);
 	
-	valve->process.fault = (valve->status.state & FAULT_BITS)?1:0;
+	valve->process.error = (valve->status.state & FAULT_BITS)?1:0;
 	
 	/*Reset command*/
 	reset_cmd(&(valve->cmd));
@@ -205,7 +205,7 @@ plcbit ValveHandler(struct Valve* valve)
 }
 
 /*Reset command*/
-void reset_cmd(struct ValveCmd* cmd)
+static void reset_cmd(struct ValveCmd* cmd)
 {
 	if (cmd->open)
 	{

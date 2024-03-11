@@ -98,8 +98,8 @@ plcbit SensorHandler(struct Sensor* sensor, struct SensorPara* sensor_para)
 		sensor->internal.pre_value = sensor->status.value;
 		sensor->internal.gradient_timer = clock_ms();
 	}
-	float temp = (sensor->internal.delta_value < 0.0f)?(sensor->internal.delta_value * -1.0f):sensor->internal.delta_value;
-	sensor->status.gradient_alarm = (sensor_para->gradient_enable)?(temp > sensor_para->gradient_limit):0;
+
+	sensor->status.gradient_alarm = (sensor_para->gradient_enable)?(fabs(sensor->internal.delta_value) > sensor_para->gradient_limit):0;
 	
 	sensor->status.state = (sensor->status.high_alarm | (sensor->status.low_alarm << 1) | (sensor->status.high_warning << 2)  | (sensor->status.low_warning << 3) | 
 		(sensor->status.high_tolerance << 4) | (sensor->status.low_tolerance << 5)  | (sensor->status.gradient_alarm << 6)  | (sensor->status.overflow << 7) | (sensor->status.underflow << 8));
