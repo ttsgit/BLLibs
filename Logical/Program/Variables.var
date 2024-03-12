@@ -1,4 +1,8 @@
 VAR
+	motor001 : Motor;
+	motor102 : InvertMotor;
+	motor101 : InvertMotor;
+	motor002 : Motor;
 	valve002 : Valve;
 	valve001 : Valve;
 	value : REAL;

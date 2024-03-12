@@ -12,6 +12,8 @@
     <File>OutputDelay.c</File>
     <File>RegulatorHandler.c</File>
     <File>fabs.c</File>
+    <File>MotorHandler.c</File>
+    <File>InvertMotorHandler.c</File>
   </Files>
   <Dependencies>
     <Dependency ObjectName="astime" />

@@ -24,6 +24,11 @@ PROGRAM _CYCLIC
 	RegulatorHandler(regulator001);
 	RegulatorHandler(regulator002);
 	
+	MotorHandler(motor001);
+	MotorHandler(motor002);
+	
+	InvertMotorHandler(motor101);
+	InvertMotorHandler(motor102);
 END_PROGRAM
 
 PROGRAM _EXIT

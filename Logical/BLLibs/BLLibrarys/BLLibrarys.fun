@@ -51,3 +51,15 @@ END_FUNCTION
 		value : REAL;
 	END_VAR
 END_FUNCTION
+
+{REDUND_OK} FUNCTION MotorHandler : BOOL (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		motor : Motor;
+	END_VAR
+END_FUNCTION
+
+{REDUND_OK} FUNCTION InvertMotorHandler : BOOL (*TODO: Add your comment here*) (*$GROUP=User,$CAT=User,$GROUPICON=User.png,$CATICON=User.png*)
+	VAR_INPUT
+		motor : InvertMotor;
+	END_VAR
+END_FUNCTION
