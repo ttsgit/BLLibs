@@ -22,10 +22,10 @@
   </Module>
   <Module Name="X20BB80" Type="X20BB80" Version="1.0.2.0" />
   <Module Name="X20BC0083" Type="X20BC0083" Version="2.11.1.0">
-    <Connection Connector="PLK1" TargetModule="X20CP3586" TargetConnector="IF3">
+    <Connection Connector="PLK1" TargetModule="X20CP3586" TargetConnector="IF3" NodeNumber="2">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.1" />
     </Connection>
-    <Connection Connector="PLK2" TargetModule="plk_any" TargetConnector="PLK1">
+    <Connection Connector="PLK2" TargetModule="openPOWERLINK_device" TargetConnector="PLK1" NodeNumber="2">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.1" />
     </Connection>
     <Connection Connector="SL" TargetModule="X20BB80" TargetConnector="SL1" />
@@ -50,6 +50,9 @@
       <Parameter ID="InternetAddress" Value="192.168.1.10" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
     </Connector>
+    <Connector Name="IF3">
+      <Parameter ID="CycleTime" Value="50000" />
+    </Connector>
     <Parameter ID="ConfigurationID" Value="TestOpenpowerlink_Config1" />
   </Module>
   <Module Name="X20DI8371" Type="X20DI8371" Version="1.1.0.0">
@@ -72,9 +75,13 @@
   <Module Name="X20TB12b" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB12c" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB12d" Type="X20TB12" Version="1.0.0.0" />
-  <Module Name="plk_any" Type="plk_any" Version="1.0.0.2">
-    <Connection Connector="PLK1" TargetModule="X20BC0083" TargetConnector="PLK2">
+  <Module Name="openPOWERLINK_device" Type="FBE.00000000_POWERLINK_CiA401_CN" OrderNumber="openPOWERLINK device">
+    <Connection Connector="PLK1" TargetModule="X20BC0083" TargetConnector="PLK2" NodeNumber="1">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.1" />
     </Connection>
+    <Parameter ID="Supervision" Value="off" />
+    <Parameter ID="ResponseTimeout" Value="2000" />
+    <Parameter ID="p6000s01_direction" Value="ro" />
+    <Parameter ID="p6200s01_direction" Value="wo" />
   </Module>
 </Hardware>

@@ -21,4 +21,10 @@ VAR
 	TT002 : Sensor;
 	regulator002 : Regulator;
 	regulator001 : Regulator;
+	input : USINT;
+	output : USINT;
+	connected : BOOL;
+	module_ok : BOOL;
+	array_input : ARRAY[0..7] OF BOOL;
+	array_output : ARRAY[0..7] OF BOOL;
 END_VAR

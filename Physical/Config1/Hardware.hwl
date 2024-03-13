@@ -3,30 +3,42 @@
   <Modules>
     <Module Name="X20CP3586" Type="X20CP3586" X="177" Y="110" />
     <Module Name="X20BB80" Type="X20BB80" X="377" Y="259" />
+    <Module Name="X20BM11" Type="X20BM11" X="415" Y="259" />
+    <Module Name="X20DO8322" Type="X20DO8322" X="415" Y="259" />
+    <Module Name="X20TB12a" Type="X20TB12" X="415" Y="286" />
+    <Module Name="X20BM11a" Type="X20BM11" X="428" Y="259" />
+    <Module Name="X20DI8371" Type="X20DI8371" X="428" Y="259" />
+    <Module Name="X20TB12b" Type="X20TB12" X="428" Y="286" />
+    <Module Name="X20BM11b" Type="X20BM11" X="441" Y="259" />
+    <Module Name="X20AO4622" Type="X20AO4622" X="441" Y="259" />
+    <Module Name="X20TB12c" Type="X20TB12" X="441" Y="286" />
+    <Module Name="X20BM11c" Type="X20BM11" X="454" Y="259" />
+    <Module Name="X20AI4622" Type="X20AI4622" X="454" Y="259" />
+    <Module Name="X20TB12d" Type="X20TB12" X="454" Y="286" />
     <Module Name="X20PS9400" Type="X20PS9400" X="402" Y="259" />
     <Module Name="X20TB12" Type="X20TB12" X="402" Y="286" />
     <Module Name="X20BC0083" Type="X20BC0083" X="377" Y="259" />
-    <Module Name="plk_any" Type="plk_any" X="465" Y="259" />
+    <Module Name="openPOWERLINK_device" Type="FBE.00000000_POWERLINK_CiA401_CN" X="517" Y="259" />
   </Modules>
   <Links>
-    <Link From="X20CP3586" To="X20BC0083" FromPort="IF3" ToPort="PLK1" IsRoutedByUser="False">
-      <Point X="233" Y="197" />
-      <Point X="233" Y="197" />
-      <Point X="233" Y="210" />
-      <Point X="233" Y="334" />
+    <Link From="X20BC0083" To="X20CP3586" FromPort="PLK1" ToPort="IF3" IsRoutedByUser="False">
+      <Point X="391" Y="334" />
+      <Point X="391" Y="334" />
       <Point X="376" Y="334" />
-      <Point X="391" Y="334" />
-      <Point X="391" Y="334" />
+      <Point X="233" Y="334" />
+      <Point X="233" Y="210" />
+      <Point X="233" Y="197" />
+      <Point X="233" Y="197" />
     </Link>
-    <Link From="X20BC0083" To="plk_any" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
+    <Link From="X20BC0083" To="openPOWERLINK_device" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
       <Point X="391" Y="349" />
       <Point X="391" Y="349" />
       <Point X="391" Y="359" />
       <Point X="391" Y="365" />
-      <Point X="498" Y="365" />
-      <Point X="498" Y="305" />
-      <Point X="498" Y="298" />
-      <Point X="498" Y="298" />
+      <Point X="550" Y="365" />
+      <Point X="550" Y="310" />
+      <Point X="550" Y="303" />
+      <Point X="550" Y="303" />
     </Link>
   </Links>
   <InfoElements />

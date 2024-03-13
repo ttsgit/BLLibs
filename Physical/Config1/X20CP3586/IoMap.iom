@@ -1,6 +1,24 @@
 VAR_CONFIG
-	::Program:out AT %QX."X20DO8322".DigitalOutput01;
+	::Program:array_output[0] AT %QX."X20DO8322".DigitalOutput01;
 	::Program:TT001.io.analog_signal AT %IW."X20AI4622".AnalogInput01;
 	::Program:TT002.io.analog_signal AT %IW."X20AI4622".AnalogInput02;
-	::Program:TT003.io.analog_signal  AT %IW."X20AI4622".AnalogInput03;
+	::Program:TT003.io.analog_signal AT %IW."X20AI4622".AnalogInput03;
+	::Program:input AT %IB."openPOWERLINK_device".DigitalInput_I6000_S01;
+	::Program:output AT %QB."openPOWERLINK_device".DigitalOutput_I6200_S01;
+	::Program:module_ok AT %IX."openPOWERLINK_device".ModuleOk;
+	::Program:array_output[1] AT %QX."X20DO8322".DigitalOutput02;
+	::Program:array_output[2] AT %QX."X20DO8322".DigitalOutput03;
+	::Program:array_output[3] AT %QX."X20DO8322".DigitalOutput04;
+	::Program:array_output[4] AT %QX."X20DO8322".DigitalOutput05;
+	::Program:array_output[5] AT %QX."X20DO8322".DigitalOutput06;
+	::Program:array_output[6] AT %QX."X20DO8322".DigitalOutput07;
+	::Program:connected AT %QX."X20DO8322".DigitalOutput08;
+	::Program:array_input[0] AT %IX."X20DI8371".DigitalInput01;
+	::Program:array_input[1] AT %IX."X20DI8371".DigitalInput02;
+	::Program:array_input[2] AT %IX."X20DI8371".DigitalInput03;
+	::Program:array_input[3]  AT %IX."X20DI8371".DigitalInput04;
+	::Program:array_input[4]  AT %IX."X20DI8371".DigitalInput05;
+	::Program:array_input[5] AT %IX."X20DI8371".DigitalInput06;
+	::Program:array_input[6]  AT %IX."X20DI8371".DigitalInput07;
+	::Program:array_input[7]  AT %IX."X20DI8371".DigitalInput08;
 END_VAR
