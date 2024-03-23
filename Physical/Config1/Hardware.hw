@@ -54,6 +54,8 @@
       <Parameter ID="CycleTime" Value="50000" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="TestOpenpowerlink_Config1" />
+    <Parameter ID="ActivateOpcUa" Value="1" />
+    <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
   </Module>
   <Module Name="X20DI8371" Type="X20DI8371" Version="1.1.0.0">
     <Connection Connector="SS1" TargetModule="X20TB12b" TargetConnector="SS" />
