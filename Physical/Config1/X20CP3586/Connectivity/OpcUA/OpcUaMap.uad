@@ -1,3 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<OpcUaSource>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OpcUaSource FileVersion="3">
+  <DefaultView>
+    <Module>
+      <Task Name="Program" Enable="True">
+        <Variable Name="motor001" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="motor002" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="motor101" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="motor102" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="regulator001" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="regulator002" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="TT001" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="TT001_PARA" Enable="True" AutomaticEnable="True" />
+        <Variable Name="TT002" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="TT002_PARA" Enable="True" AutomaticEnable="True" />
+        <Variable Name="TT003" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="TT003_PARA" Enable="True" AutomaticEnable="True" />
+        <Variable Name="valve001" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+        <Variable Name="valve002" Enable="True">
+          <Variable Name="cmd" Enable="True" AutomaticEnable="True" />
+          <Variable Name="status" Enable="True" AutomaticEnable="True" />
+        </Variable>
+      </Task>
+    </Module>
+  </DefaultView>
 </OpcUaSource>
